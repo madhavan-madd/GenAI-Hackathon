@@ -1,0 +1,19 @@
+import pandas as pd
+import numpy as np
+
+# Sample interaction data (user, product, interaction)
+interaction_data = pd.DataFrame({
+    'user_id': [1, 2, 3, 4, 5, 1, 2, 3, 5, 6],
+    'product_id': [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+    'interaction_score': [5, 3, 4, 2, 5, 4, 5, 3, 4, 2]  # This can represent ratings or purchase frequency
+})
+
+# Product metadata (for context)
+product_data = pd.DataFrame({
+    'product_id': [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+    'category': ['electronics', 'clothing', 'books', 'home', 'electronics', 'clothing', 'books', 'home', 'electronics', 'clothing'],
+    'price': [199, 50, 15, 100, 300, 60, 20, 120, 250, 80]
+})
+
+# We can use user-product interaction matrix
+interaction_matrix = interaction_data.pivot(index='user_id', columns='product_id', values='interaction_score').fillna(0)
